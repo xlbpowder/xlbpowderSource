@@ -131,4 +131,8 @@ volatile与synchronized的区别：
     volatile只能描述属性，而synchronized可以用于代码块与方法。
     volatile无法描述属性进行同步处理，只是一种直接内存的处理，避免了副本处理。
 
-对于volatile的详细解释，可以参考：https://www.ibm.com/developerworks/cn/java/j-jtp06197.html
+对于volatile的详细解释，可以参考
+
+https://www.ibm.com/developerworks/cn/java/j-jtp06197.html
+
+https://www.cnblogs.com/dolphin0520/p/3920373.html
