@@ -10,6 +10,8 @@ categories: Java
 
 > 在学习Spring AOP与RPC的实现时，总会与代理模式密不可分，而日常编码中代理模式也是常用的设计模式之一。学习代理模式与动态代理的实现与作用是非常有益于理解框架的源码实现，并且可以提高抽象思维。本文是个人在学习代理模式以及动态代理的一个小总结，没有过深的探讨。本文不会提及具体动态代理底层字节码框架的实现，之后有机会会补充Javassist和ASM字节码框架的文章。
 
+<!-- more -->
+
 ## 概念
 
 _**计算机科学领域的任何问题都可以通过增加一个间接的中间层来解决**_
@@ -150,7 +152,7 @@ public Object create(Class[] argumentTypes, Object[] arguments)
     net.sf.cglib.proxy.LazyLoader：在被代理对象需要懒加载场景下非常有用，如果被代理对象加载完成，那么在以后的代理调用时会重复使用。
     net.sf.cglib.proxy.Dispatcher：与net.sf.cglib.proxy.LazyLoader差不多，但每次调用代理方法时都会调用loadObject方法来加载被代理对象。
     net.sf.cglib.proxy.ProxyRefDispatcher：与Dispatcher相同，但它的loadObject方法支持传入代理对象。
-    net.sf.cglib.proxy.MethodInterceptor是最常用的回调类型，在基于代理的AOP实现中它经常被用来拦截方法调用。
+    net.sf.cglib.proxy.MethodInterceptor：是最常用的回调类型，在基于代理的AOP实现中它经常被用来拦截方法调用。
 
 ### 使用Enhancer创建代理对象
 
@@ -225,7 +227,7 @@ class CglibProxy implements MethodInterceptor {
 
     @Override
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-        System.out.println("methodName:" + method);
+        System.out.println("method:" + method);
         System.out.println("methodProxy:" + methodProxy);
         Object returnObj = null;
         System.out.println("after...");
@@ -237,7 +239,7 @@ class CglibProxy implements MethodInterceptor {
 ```
 运行结果
 ```
-methodName:public void proxy.BusinessImpl.doSomething()
+method:public void proxy.BusinessImpl.doSomething()
 methodProxy:net.sf.cglib.proxy.MethodProxy@45ff54e6
 after...
 do something ...

@@ -11,6 +11,8 @@ categories: Java
 >最近在学习Stream的api，发现Java推出的函数式接口、Lambda表达式、引用表达式等大都服务于Stream的api使用，但其实并不一定，所以收集整理了下关于相关特性的用法。
 在这只会讲解下基本的用法，关于函数编程框架的详细解读，大家可以参考下这篇 [Java8 函数式编程探秘](http://www.importnew.com/27901.html "Java8 函数式编程探秘")，介绍的非常全面。
 
+<!-- more -->
+
 ## 函数式接口
 先讲一个注解 ***@FunctionalInterface***
 

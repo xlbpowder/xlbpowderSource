@@ -19,6 +19,8 @@ github pages是github提供的一个托管的公开网页，会自动将你id.gi
 
 由于hexo是基于NodeJS的，所以要先安装NodeJS，具体教程有很多，就不做表述了，下面记录了一些搭建博客过程中常用的命令。
 
+<!-- more -->
+
 # 常用指令
 ## 清理
 ``` linux

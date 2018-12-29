@@ -7,6 +7,8 @@ categories: Java
 
 > 本文是前段时间公司培训讲到的内容，个人做了笔记进行了总结。通过各类JAVA程序的OOM问题，结合JVM内存模型进行定位以及调优，具体调试的工具以及内容后续会进行补充。
 
+<!-- more -->
+
 # OOM
 
 ## 内存模型
@@ -15,7 +17,8 @@ categories: Java
 ![JVM内存模型02-photo](/image/JVM内存模型02.png)
 
 ## 非堆内存
-### 调优参数
+#
+## 调优参数
 -XX:MaxPremSize=256MB
 * jdk1.7 持久代 使用的虚拟机内存
 * jdk1.8之后 源空间 使用的是本地内存
@@ -29,7 +32,7 @@ PremGen Space
 ## 堆内存
 ### 调优参数
 -Xmx2G
-* 年轻代：Eden Survior
+* 年轻代：Eden Survior -XX:NewSize=30m
 * 老年代
 ### 对应OOM错误信息
 Java heap space/GC overhead limit exceeded
