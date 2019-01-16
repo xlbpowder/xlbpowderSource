@@ -1,9 +1,8 @@
-
 ---
 title: 代理模式/JAVA动态代理
 date: 2018-12-12 15:01:00
 tags:
-categories: Java
+categories: 设计模式
 ---
 
 # 代理模式/JAVA动态代理
