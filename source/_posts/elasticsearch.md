@@ -44,3 +44,87 @@ ElasticSearch 基于JSON的开源分布式搜索分析引擎
 - 支持设置不同的节点类型，支持Hot&Warm架构
 
 ## 支持多种方式介接入
+- 多种语言接入类库
+- RESTful api & Transport Api
+- JDBC & ODBC
+
+## Elasticsearch主要功能
+- 海量数据的分布式存储以及集群管理
+    - 服务与数据的高可用、水平扩展
+- 近实时搜索，性能卓越
+    - 结构化/全文/地理位置/自动完成
+- 海量数据的近实时分析
+    - 聚合功能
+## 新特性
+### 5.x
+- Lucene 6.x，性能提升，默认打印机制从TF-IDF改为BM25
+- 支持Ingest节点/Painless Scripting/Completiion suggested支持/原生的Java REST客户端
+- Type标记成deprecated，支持了Keyword的类型
+- 性能优化
+    - 内部引擎移除了避免同一文档并发更新的竞争锁，带来了15%-20%的性能提升
+    - Instant aggregation，支持分片上的聚合的缓存
+    - 新增了Profile API
+
+### 6.x
+- Lucene 7.x
+- 新特性
+    - 跨集群复制（CCR）
+    - 索引生命周期管理
+    - SQL的支持
+- 更友好的升级以及数据迁移
+    - 在主要版本之间的迁移更加简化，体验升级
+    - 全新的基于操作的数据复制框架，可加快恢复数据
+- 性能优化
+    - 有效存储稀疏字段的新方法，降低了存储成本
+    - 在索引时进行排序，可加快排序的查询性能
+
+### 7.x
+- Lucene 8.0
+- 重大改进-正式废除单个索引下多Type的支持
+- 7.1开始，Security功能免费使用
+- ECK-Elasticsearch Operator on Kubernetes,可以将Elasticsearch部署至K8S的容器环境中
+- 新功能
+    - New Cluster coordinatio，新的分组协调
+    - Feature-Complete High Level REST Client，改进了高级REST客户端
+    - Script Score Query
+- 性能优化
+    - 默认的Primary Shard数由5改为1，避免over sharding
+    - 性能优化，更快的Top K
+
+## Elastic Stack生态圈
+![es01](/image/ElasticSearch/elastic_stack01.jpg)
+
+### Logstash 数据处理管道
+开源的服务端数据处理管道，支持从不同来源采集数据、转换数据，并将数据发送到不同的存储介质中。
+
+Logstash诞生于2009年，最初用作日志的的采集与处理，后再2013年被Elastic收购。
+
+#### 特性
+- 实时解析和转换数据
+    - 从IP地址破译出地理坐标
+    - 将PII数据匿名化，完全排除敏感字段
+- 可扩展
+    - 200多个插件（日志/数据库/Arcsigh/Netflow）
+- 可靠性安全性
+    - Logstash会通过持久化队列来保证至少将运行中的事件送达一次
+    - 数据传输加密
+- 监控
+
+### Kibana 可视化分析
+Kibana = Kiwifruit（奇异果） + banana（香蕉）
+
+数据可视化工具，最初基于Logstash，2013年被Elastic公司收购。
+
+数据可视化分析，kibana可以提供一系列的可视化图表。也可以结合机器学习的技术做一些相关异常检测，提前发现可疑的问题。
+
+### Beats 轻量的数据采集器
+Go语言开发，运行速度快。
+- Filebeat：文件采集器
+- Packetbeat：网络数据抓包
+- functionbeat:对serveriess infrastructure提供数据抓取
+- winlogbeat
+- Metricbeat
+- Heartbeat
+- Auditbeat
+- Journalbeat
+
