@@ -1,8 +1,8 @@
 ---
-title: ElasticSearch入门
+title: ElasticSearch入门简介
 date: 2019-06-20 10:41:00
 tags:
-categories: ElasticSearch
+categories: Elastic Stack
 ---
 
 又开了一个坑，之前也只是对ES和ELK的使用和搭建只有简单的理解，没有系统的学习过，那趁着这段时间好好系统的学习下。
@@ -92,7 +92,8 @@ ElasticSearch 基于JSON的开源分布式搜索分析引擎
     - 性能优化，更快的Top K
 
 ## Elastic Stack生态圈
-![es01](/image/ElasticSearch/elastic_stack01.jpg)
+![es02](/image/ElasticSearch/elastic_stack01.jpg)
+基于Elaticsearch、Logstash、Kibana等构建出一整套的生态系统，适合大量场景，向用户提供网站搜索、机器学习等服务。
 
 ### Logstash 数据处理管道
 开源的服务端数据处理管道，支持从不同来源采集数据、转换数据，并将数据发送到不同的存储介质中。
@@ -128,3 +129,20 @@ Go语言开发，运行速度快。
 - Auditbeat
 - Journalbeat
 
+### ELK应用场景
+- 网站搜索/垂直搜索/代码搜索
+- 日志管理与分析/安全指标监控/应用性能监控/WEB抓取舆情分析
+
+### 搜索场景
+#### ElasticSearch与数据库的集成
+![es03](/image/ElasticSearch/elasticsearch02.png)
+- 可以单独使用Elasticsearch进行单存储。但是当数据需要与现有数据集成、考虑事务性、数据频繁更新时，就需要与数据库进行同步数据了。
+
+### 指标分析/日志分析
+![es04](/image/ElasticSearch/elasticsearch03.png)
+1. Data Collection，收集数据。beats可以从不同的数据源中收集数据。对于特定的需求，可以通过代码实现数据收集。
+2. Buffering，缓冲。在真实的业务场景中，往往需要收集的数据量较大
+，需要引入消息、缓存中间件来作为数据采集的缓冲层。
+3. Data Aggregation&Processing，数据转化聚合后发送给ES。
+4. Indexing&Storage，索引和存储。
+5. Analysis&visualization，基于Elasticsearch可以搭建Kibana，也可以使用可Grafana进行数据分析，图形化展示。
