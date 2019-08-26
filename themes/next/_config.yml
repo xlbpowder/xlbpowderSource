@@ -373,7 +373,7 @@ disqus:
 
 # changyan
 changyan:
-  enable: false
+  enable: true
   appid:
   appkey:
 
@@ -417,6 +417,23 @@ gitment:
   client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
+
+# gitalk
+# enable: true
+# owner: github帐号
+# repo: 仓库名称
+# ClientID: Client ID
+# ClientSecret: Client Secret
+# admin: github帐号#指定可初始化评论账户
+# istractionFreeMode: true
+gitalk:
+ enable: true
+ owner: xlbpowder
+ repo: xlbpowder.comments
+ client_id: cb903b000756e9d9d1c7
+ client_secret: ae8bc7faa89639391f0961c05fed416f38e8d820
+ admin: xlbpowder
+ istraction_free_mode: true
 
 # Baidu Share
 # Available value:
