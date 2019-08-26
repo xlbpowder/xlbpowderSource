@@ -1,7 +1,7 @@
 ---
 title: 关于parallelStream并发安全的思考
 date: 2019-04-26 18:00:00
-tags:
+tags: Java
 categories: Java
 ---
 

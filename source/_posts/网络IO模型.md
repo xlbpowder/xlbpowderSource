@@ -1,8 +1,8 @@
 ---
 title: 网络IO模型
 date: 2019-05-10 11:00:00
-tags:
-categories: Others
+tags: 网络IO模型
+categories: 其他
 ---
 
 在学习JAVA NIO的时候有学习到相关的BIO、NIO、AIO的概念，以及一直对阻塞、非阻塞、异步等IO模型的知识感到非常模糊，要清楚JAVA的NIO是什么，以及基础的操作系统的网络IO模型，在此总结下网络IO模型的基础知识。

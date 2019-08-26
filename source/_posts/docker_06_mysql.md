@@ -1,8 +1,8 @@
 ---
 title: docker 安装MySql
 date: 2019-08-22 11:00:00
-tags:
-categories: docker
+tags: docker
+categories: DevOps
 ---
 
 > 最近被安排做数据迁移，因为刚换电脑，正好需要装一个mysql，想着正好直接用docker装一个试试

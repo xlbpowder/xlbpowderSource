@@ -1,8 +1,8 @@
 ---
 title: hexo
 date: 2018-09-04 15:12:28
-tags:
-categories: Others
+tags: hexo
+categories: 其他
 ---
 
 # Hexo&GitHub Pages

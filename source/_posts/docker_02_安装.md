@@ -1,8 +1,8 @@
 ---
 title: docker 安装
 date: 2019-03-22 10:00:00
-tags:
-categories: docker
+tags: docker
+categories: DevOps
 ---
 
 > 

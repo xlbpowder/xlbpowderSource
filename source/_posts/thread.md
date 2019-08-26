@@ -1,7 +1,7 @@
 ---
 title: Java Thread
 date: 2018-11-28 14:12:17
-tags:
+tags: Java
 categories: Java
 ---
 

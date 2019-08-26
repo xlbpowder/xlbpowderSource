@@ -1,8 +1,8 @@
 ---
 title: docker 基础指令
 date: 2019-08-21 18:00:00
-tags:
-categories: docker
+tags: docker
+categories: DevOps
 ---
 
 > 列举一些学习过程中常用到的指令
@@ -101,7 +101,7 @@ docker top container_id/names
 ```
 
 ## 查看容器/镜像 元数据
-会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。
+会返回一个JSON文件记录着Docker容器的配置和状态信息。
 ```
 docker inspect container_id/names
 ```

@@ -1,7 +1,7 @@
 ---
 title: Lambda、函数式接口、引用表达式
 date: 2018-11-21 14:00:01
-tags:
+tags: Java
 categories: Java
 ---
 

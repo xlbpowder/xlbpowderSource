@@ -1,8 +1,8 @@
 ---
 title: docker 简介
 date: 2019-03-21 10:00:00
-tags:
-categories: docker
+tags: docker
+categories: DevOps
 ---
 
 > 大概一年前接触微服务后就听说过容器化、docker这些名词了，草草了解了之后一直没有实践开始学习过，对于DevOps而言，容器化、以及容器编排都是非常重要的技术，现在开始着手学习并且记录下学习的笔记。

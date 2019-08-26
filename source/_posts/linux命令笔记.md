@@ -1,8 +1,8 @@
 ---
 title: linux命令笔记
 date: 2019-03-20 10:00:00
-tags:
-categories: linux
+tags: Linux
+categories: Linux
 ---
 
 > 一直都在说要好好学习下linux命令，最近在学习docker的时候真的发现自己linux的能力太差了，基础也不行，暂时先记下学习docker过程中用到的一些命令行。

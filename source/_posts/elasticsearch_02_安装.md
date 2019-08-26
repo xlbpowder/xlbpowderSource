@@ -1,7 +1,7 @@
 ---
 title: ElasticSearch安装
 date: 2019-07-17 17:00:00
-tags:
+tags: ElasticSearch
 categories: Elastic Stack
 ---
 

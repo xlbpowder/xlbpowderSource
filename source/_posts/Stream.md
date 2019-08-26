@@ -1,7 +1,7 @@
 ---
 title: Stream
 date: 2018-11-19 10:53:00
-tags:
+tags: Java
 categories: Java
 ---
 

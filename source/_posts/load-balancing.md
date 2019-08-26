@@ -1,8 +1,8 @@
 ---
 title: load balancing
 date: 2018-09-04 13:54:17
-tags:
-categories: Others
+tags: 负载均衡
+categories: 其他
 ---
 
 ---

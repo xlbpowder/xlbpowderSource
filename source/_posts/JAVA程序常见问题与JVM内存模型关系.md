@@ -1,7 +1,7 @@
 ---
 title: JAVA程序常见问题与JVM内存模型关系
 date: 2018-12-14 10:00:00
-tags:
+tags: Java
 categories: Java
 ---
 

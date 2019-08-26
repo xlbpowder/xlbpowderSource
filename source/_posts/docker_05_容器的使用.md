@@ -1,8 +1,8 @@
 ---
 title: docker 容器使用
 date: 2019-08-21 17:00:00
-tags:
-categories: docker
+tags: docker
+categories: DevOps
 ---
 
 >
@@ -46,6 +46,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 这时候通过docker宿主机的ip:32768就可以直接访问了
 
+## 运行镜像并修改监听端口
 也可以通过-p参数设置不同的端口
 ```
 [root@iZwz91w0kp029z0dmueicoZ /root]#docker run -d -p 5000:5000 training/webapp python app.py
@@ -61,6 +62,30 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 
 这时候通过ip:5000也是可以访问的
+
+## 观察容器状态
+### 网络端口
+这时候可以先查下网络端口映射
+```
+[root@iZwz91w0kp029z0dmueicoZ /root]#docker port 1d7a7e33cdf6
+0.0.0.0:5000->5000/tcp
+[root@iZwz91w0kp029z0dmueicoZ /root]#docker port 76fd8c273818
+0.0.0.0:32768->5000/tcp
+```
+
+### 应用程序日志
+```
+[root@iZwz91w0kp029z0dmueicoZ /root]#docker logs 006fdd129e49
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
+也可以加参数-f追踪查看最新打印的日志。
+
+### 查看容器进程
+```
+[root@iZwz91w0kp029z0dmueicoZ /root]#docker top 006fdd129e49
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                30384               30366               0                   10:15               ?                   00:00:00            python app.py
+```
 
 ## 停止容器
 我们可以通过docker stop container_id来停止指定的容器。

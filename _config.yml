@@ -7,9 +7,12 @@ title: LiuBo's Notes
 subtitle:
 description:
 keywords:
-author: LiuBo
-language:
+author: Claim Your Destiny
+language: zh-Hans
 timezone:
+
+# CNZZ配置
+cnzz_siteid: 1277962807
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

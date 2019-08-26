@@ -1,8 +1,8 @@
 ---
 title: docker Hello World
 date: 2019-08-21 10:00:00
-tags:
-categories: docker
+tags: docker
+categories: DevOps
 ---
 
 有段时间没更新了，前段时间出去玩了一圈，回来接着学习docker。
