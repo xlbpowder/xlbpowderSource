@@ -16,6 +16,6 @@ type: "about"
 
 ![WeChat_QRcode](/image/QRcode/wechat_qrcode.jpg)
 
-另外，现在文末增加了**打赏（要饭）**功能，欢迎并感谢社会各界好心人士对本中下贫码农投食。
+另外，现在文末增加了**打赏（恰饭）**功能，欢迎并感谢社会各界好心人士对本中下贫码农投食。
 
 > Speak Thy Desire
