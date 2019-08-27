@@ -27,10 +27,10 @@ override: false
 # For example, you put your favicons into `hexo-site/source/images` directory.
 # Then need to rename & redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
+  small: /images/new_favicon_source_02_16x16.jpg # 16x16
+  medium: /images/new_favicon_source_02_32x32.jpg # 32x32
+  apple_touch_icon: /images/new_favicon_source_02_180x180.jpg # 180x180
+  safari_pinned_tab: /images/new_favicon_source_02.jpg
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -128,7 +128,8 @@ scheme: Muse
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/xlbpowder || github
-  微博: https://weibo.com/u/1870931111?refer_flag=1001030201_
+  Weibo: https://weibo.com/u/1870931111?refer_flag=1001030201_ || weibo
+  WeChat: https://xlbpowder.cn/image/QRcode/wechat_qrcode.jpg || weixin
   #E-Mail: 857437038@qq.com
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -144,7 +145,8 @@ social_icons:
   icons_only: false
   transition: false
   GitHub: github
-  微博: wweibo
+  Weibo: weibo
+  WeChat: weixin
   #E-Mail: e-mail
 
 # Blog rolls
@@ -158,7 +160,7 @@ links_layout: block
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-#avatar: /images/avatar.gif
+avatar: /images/new_favicon_source_02_180x180.jpg
 
 # Table Of Contents in the Sidebar
 toc:
