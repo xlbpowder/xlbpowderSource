@@ -17,7 +17,7 @@ categories: Java
 ![JVM内存模型02-photo](/image/JVM内存模型02.png)
 
 ## 非堆内存
-#
+
 ## 调优参数
 -XX:MaxPremSize=256MB
 * jdk1.7 持久代 使用的虚拟机内存

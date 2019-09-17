@@ -31,3 +31,34 @@ logs    | path.log | 日志文件
 modules |  | 包含所有ES模块
 plugins |  | 包含所有已安装插件
 
+## 安装错误解决方法汇总
+1. seccomp unavailable 错误
+解决方法：elasticsearch.yml 配置
+
+bootstrap.memory_lock: false
+
+bootstrap.system_call_filter: false
+
+2. max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]
+
+解决方法：修改 /etc/security/limits.conf，配置：
+
+hard nofile 80000
+
+soft nofile 80000
+
+3. max virtual memory areas vm.max_map_count [65530] is too low
+
+解决方法：修改 /etc/sysctl.conf，添加 ：
+
+vm.max_map_count = 262144
+
+然后 sysctl -p 生效
+
+4. the default discovery settings are unsuitable...., last least one of [....] must be configured
+
+解决方法：elasticsearch.yml 开启配置：
+
+node.name: node-1
+
+cluster.initial_master_nodes: ["node-1"]

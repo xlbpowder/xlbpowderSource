@@ -50,3 +50,55 @@ CentOS Linux release 7.4.1708 (Core)
 
 一直用root用户其实也是有一定风险的，当然个人使用的话是没问题的，但是如果有多人使用，root用户权限会非常大，并不安全。所以先学习了下如何创建用户，并且分配相关权限。
 
+## 网络
+在windows中是使用ipconfig查看IP网络信息的，但是在linux系统中会提示没有这个指令，那相同能力的指令是什么呢，其实是ifconfig。
+```
+[root@iZwz91w0kp029z0dmueicoZ /root]#ifconfig
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:f9:91:0c:70  txqueuelen 0  (Ethernet)
+        RX packets 3385  bytes 233447 (227.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7300  bytes 448669 (438.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.18.149.46  netmask 255.255.240.0  broadcast 172.18.159.255
+        ether 00:16:3e:02:d1:f0  txqueuelen 1000  (Ethernet)
+        RX packets 5062352  bytes 1452046450 (1.3 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3885791  bytes 441227116 (420.7 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethe8247e8: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 76:33:08:8d:a1:f0  txqueuelen 0  (Ethernet)
+        RX packets 3204  bytes 265137 (258.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7105  bytes 434120 (423.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethfcf581a: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether d6:5a:8c:29:23:7e  txqueuelen 0  (Ethernet)
+        RX packets 133  bytes 11230 (10.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 231  bytes 14338 (14.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+### iptables
+防火墙配置规则
+
+iptables --list-rules
+
+### brctl
+先引入工具包：yum install bridge-utils
+
+brctl show
