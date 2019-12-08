@@ -102,3 +102,55 @@ iptables --list-rules
 先引入工具包：yum install bridge-utils
 
 brctl show
+
+### 查看端口占用情况
+netstat -tunlp
+```
+[root@iZwz91w0kp029z0dmueicoZ /root/elasticsearch]#netstat -tunlp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      31413/sshd
+tcp6       0      0 :::3306                 :::*                    LISTEN      28980/docker-proxy
+udp        0      0 0.0.0.0:25940           0.0.0.0:*                           724/dhclient
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           724/dhclient
+udp        0      0 172.20.0.1:123          0.0.0.0:*                           7939/ntpd
+udp        0      0 172.19.0.1:123          0.0.0.0:*                           7939/ntpd
+udp        0      0 172.17.0.1:123          0.0.0.0:*                           7939/ntpd
+udp        0      0 172.18.149.46:123       0.0.0.0:*                           7939/ntpd
+udp        0      0 127.0.0.1:123           0.0.0.0:*                           7939/ntpd
+udp        0      0 0.0.0.0:123             0.0.0.0:*                           7939/ntpd
+udp6       0      0 :::50357                :::*                                724/dhclient
+udp6       0      0 :::123                  :::*                                7939/ntpd
+
+```
+## 硬盘使用情况
+> df [OPTION]... [FILE]...
+- -a, --all 包含所有的具有 0 Blocks 的文件系统
+- --block-size={SIZE} 使用 {SIZE} 大小的 Blocks
+- -h, --human-readable 使用人类可读的格式(预设值是不加这个选项的...)
+- -H, --si 很像 -h, 但是用 1000 为单位而不是用 1024
+- -i, --inodes 列出 inode 资讯，不列出已使用 block
+- -k, --kilobytes 就像是 --block-size=1024
+- -l, --local 限制列出的文件结构
+- -m, --megabytes 就像 --block-size=1048576
+- --no-sync 取得资讯前不 sync (预设值)
+- -P, --portability 使用 POSIX 输出格式
+- --sync 在取得资讯前 sync
+- -t, --type=TYPE 限制列出文件系统的 TYPE
+- -T, --print-type 显示文件系统的形式
+- -x, --exclude-type=TYPE 限制列出文件系统不要显示 TYPE
+- -v (忽略)
+- --help 显示这个帮手并且离开
+- --version 输出版本资讯并且离开
+```
+[root@iZwz91w0kp029z0dmueicoZ /root/elasticsearch]#df -hl
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        40G   16G   22G  43% /
+devtmpfs        1.9G     0  1.9G   0% /dev
+tmpfs           1.9G     0  1.9G   0% /dev/shm
+tmpfs           1.9G  428K  1.9G   1% /run
+tmpfs           1.9G     0  1.9G   0% /sys/fs/cgroup
+overlay          40G   16G   22G  43% /var/lib/docker/overlay2/15c11eb5a1a871c9e41ce861b6fcd11063a2d5dec965b75985b1068cf05f9ce5/merged
+shm              64M     0   64M   0% /var/lib/docker/containers/1254821edc4c200cd6e899a70347623bb38276bde0db1591f7c9c4dbc208a692/mounts/shm
+tmpfs           380M     0  380M   0% /run/user/0
+```
