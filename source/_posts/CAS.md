@@ -111,7 +111,7 @@ A common case of the ABA problem is encountered when implementing a lock-free da
  - 线程P2进行操作并且将值修改为B，而后又修改为A。
  - 线程P1进行CAS操作时候发现值仍为A，便可以进行操作。
 
- 其实在一般情况下，看似以最终结果来看可以认为是没有问题的，但是整个操作的过程是有问题的，比如：链表的头在变化了两次后恢复了原值，但并不代表链表没有发生过变化。
+其实在一般情况下，看似以最终结果来看可以认为是没有问题的，但是整个操作的过程是有问题的，比如：链表的头在变化了两次后恢复了原值，但并不代表链表没有发生过变化。
 ### 解决思路
 Tagged state reference 标记状态参考：使用某个标识来表示是否有过变更的版本信息。JDK中有提供AtomicStampedReference/AtomicMarkableReference用于解决ABA问题。
 
