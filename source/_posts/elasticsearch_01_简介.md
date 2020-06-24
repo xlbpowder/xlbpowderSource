@@ -6,8 +6,10 @@ categories: Elastic Stack
 ---
 
 又开了一个坑，之前也只是对ES和ELK的使用和搭建只有简单的理解，没有系统的学习过，那趁着这段时间好好系统的学习下。
-
+全部学习笔记内容摘自极客时间阮一鸣老师的视频课程《Elasticsearch核心技术与实战》，与书籍《深入理解elasticsearch》。但后者相较于已经对es有初步的认识了，适合进阶学习。
 <!-- more -->
+
+![es01](/image/ElasticSearch/elastic_stack01.jpg)
 
 ElasticSearch 基于JSON的开源分布式搜索分析引擎
 - Near Real Time 近实时
