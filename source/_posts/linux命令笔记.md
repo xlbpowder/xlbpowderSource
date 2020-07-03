@@ -154,3 +154,51 @@ overlay          40G   16G   22G  43% /var/lib/docker/overlay2/15c11eb5a1a871c9e
 shm              64M     0   64M   0% /var/lib/docker/containers/1254821edc4c200cd6e899a70347623bb38276bde0db1591f7c9c4dbc208a692/mounts/shm
 tmpfs           380M     0  380M   0% /run/user/0
 ```
+
+## CPU使用情况
+``` linux
+[root@iZwz9bvlfc3n574x9ygoj9Z /root/es]$top
+[root@iZwz9bvlfc3n574x9ygoj9Z /root/es]$top -c
+```
+
+## 内存使用
+``` linux
+[root@iZwz9bvlfc3n574x9ygoj9Z ~]$free -h
+              total        used        free      shared  buff/cache   available
+Mem:           7.6G        1.4G        5.9G        560K        412M        5.9G
+Swap:            0B          0B          0B
+```
+- -b 以Byte为单位显示内存使用情况。
+- -k 以KB为单位显示内存使用情况。
+- -m 以MB为单位显示内存使用情况。
+- -h 以合适的单位显示内存使用情况，最大为三位数，自动计算对应的单位值。单位有：
+    - B = bytes
+    - K = kilos
+    - M = megas
+    - G = gigas
+    - T = teras
+- -o 不显示缓冲区调节列。
+- -s <间隔秒数> 持续观察内存使用状况。
+- -t 显示内存总和列。
+- -V 显示版本信息。
+
+## buff/cache
+概念知识，参考https://www.cnblogs.com/cpw6/p/11711817.html
+
+### 如何清除
+在系统中除了内存将被耗尽的时候可以清缓存以外，我们还可以使用下面这个文件来人工触发缓存清除的操作：
+``` linux
+$ cat /proc/sys/vm/drop_caches 
+```
+
+方法是：
+``` linux 
+$ echo 1 > /proc/sys/vm/drop_caches
+```
+
+当然，这个文件可以设置的值分别为1、2、3。它们所表示的含义为：
+``` linux
+echo 1 > /proc/sys/vm/drop_caches:表示清除pagecache。
+echo 2 > /proc/sys/vm/drop_caches:表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache。
+echo 3 > /proc/sys/vm/drop_caches:表示清除pagecache和slab分配器中的缓存对象。
+```

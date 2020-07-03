@@ -257,5 +257,159 @@ title:befutifl~1
 title:"lord rings"~2
 ```
 
-
 # Request Body Search
+- 将查询语句通过HTTP Request Body发送给Elasticsearch
+- 使用Query DSL
+```
+GET /my_index/_search?ignore_unavailable=true
+{
+  "profile": "true",
+  "query": {
+    "match_all": {}
+  }
+}
+```
+
+## 分页
+从0开始，默认返回10个结果，获取靠后的记录翻页成本较高
+- from 开始位置
+- size 页码大小
+
+## 排序
+- 最好在"数字型"与"日期型"字段进行排序
+- 因为对于多值类型或分析过的字段排序，系统会选一个值，无法得知该值
+```
+GET /my_index/_search?ignore_unavailable=true
+{
+  "profile": "false",
+  "sort": [
+    {
+      "updated_at":  "asc"
+    }
+  ], 
+  "from": 0,
+  "size": 10, 
+  "query": {
+    "match_all": {}
+  }
+}
+```
+语法有两种
+```
+"sort": [
+  {
+    "FIELD": {
+      "order": "desc"
+    }
+  }
+]
+或者
+"sort": [
+  {
+    "FIELD": "desc"
+  }
+]
+```
+
+## _Source Filtering
+如_source没有存储，那就只返回匹配文档的元数据，另外_source支持使用通配符，如_source["name*","type*"]
+
+```
+GET /my_index/_search?ignore_unavailable=true
+{
+  "profile": "false",
+  "_source": ["type", "updated_at"], 
+  "from": 0,
+  "size": 10, 
+  "query": {
+    "match_all": {}
+  }
+}
+
+单字段
+"_source": "type", 
+
+多字段
+"_source": ["type", "updated_at"], 
+```
+
+## 脚本字段
+script_fields，对多个列进行函数操作。可以方便对字段进行函数操作后排序等
+```
+GET /my_index/_search?ignore_unavailable=true
+{
+  "profile": "false",
+  "script_fields": {
+    "new_field": {
+      "script": {
+        "lang": "painless",
+        "source": "doc['updated_at'].value+'_Hello'"
+      }
+    }
+  }, 
+  "from": 0,
+  "size": 10, 
+  "query": {
+    "match_all": {}
+  }
+}
+```
+
+## 查询表达式query match
+
+### match query
+match的key是field，value是值，value可以用空格分割，相当于or。
+```
+POST /logstash-2020.07.02-000001/_search
+{
+  "profile":false,
+  "query": {
+    "match": {
+      "message": "1996"
+    }
+  }
+}
+```
+
+也可以match某个field，query指具体查询内容，operator是条件类型
+```
+POST /logstash-2020.07.02-000001/_search
+{
+  "query": {
+    "match": {
+      "message": {
+        "query": "Love 1964",
+        "operator": "and"
+      }
+    }
+  }
+}
+```
+
+### match_phrase query
+指定feild进行词组查询
+```
+POST /logstash-2020.07.02-000001/_search
+{
+  "query": {
+    "match_phrase": {
+      "message": "Fair Game"
+    }
+  }
+}
+```
+
+也可以使用slop来控制在词组插入指定数量的term进行查询
+```
+POST /logstash-2020.07.02-000001/_search
+{
+  "query": {
+    "match_phrase": {
+      "message": {
+        "query": "Fair Game",
+        "slop": 1
+      }
+    }
+  }
+}
+```
