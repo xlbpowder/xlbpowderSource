@@ -413,3 +413,52 @@ POST /logstash-2020.07.02-000001/_search
   }
 }
 ```
+
+## Query String Query
+类似URI Query
+```
+POST /logstash-2020.07.02-000001/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "message",
+      "query": "Love AND 1964"
+    }
+  }
+}
+
+
+POST /logstash-2020.07.02-000001/_search
+{
+  "query": {
+    "query_string": {
+      "fields": ["message"],
+      "query": "(Roses AND 1996)"
+    }
+  }
+}
+```
+
+## Simple Query String Query
+- 类似Query String，但是会忽略错误的语法，同时只支持部分查询语法
+- 不支持AND OR NOT，会当作字符串处理
+- Term之间默认的关系是OR，可以指定Operator
+- 支持部分逻辑
+```
++ 替代 AND
+| 替代 OR
+- 替代 NOT
+```
+
+```
+POST /logstash-2020.07.02-000001/_search
+{
+  "query": {
+    "simple_query_string": {
+      "query": "Roses -1996", 
+      "fields": ["message"]
+      , "default_operator": "AND"
+    }
+  }
+}
+```

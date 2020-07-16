@@ -146,3 +146,142 @@ https://github.com/medcl/elasticsearch-analysis-ik
 https://github.com/microbun/elasticsearch-thulac-plugin
 
 THU Lexucal Analyzer for Chinese，清华大学自然语言处理和社会人文计算实验室的一套中文分词器
+
+# 自定义分词
+当Elasticsearch自带的分词器无法满足时，可以自定义分词器。通过组合不同的组件实现
+
+## Character Filter 字符过滤器
+在Tokenizer之前对文本进行处理，例如增加删除及替换字符。可以配置多个Character Filters。会影响Tokenizer的position和offset信息
+
+### Elasticsearch内置的Character Filters
+- HTML strip: 去除HTML标签
+- Mapping: 字符串替换
+- Pattern replace: 正则匹配替换
+
+```
+POST _analyze
+{
+  "tokenizer":"keyword",
+  "char_filter":["html_strip"],
+  "text": "<b>hello world</b>"
+}
+
+POST _analyze
+{
+  "tokenizer":"path_hierarchy",
+  "text":"/user/ymruan/a/b/c/d/e"
+}
+
+# 使用char filter进行替换
+POST _analyze
+{
+  "tokenizer": "standard",
+  "char_filter": [
+      {
+        "type" : "mapping",
+        "mappings" : [ "- => _"]
+      }
+    ],
+  "text": "123-456, I-test! test-990 650-555-1234"
+}
+
+# char filter 替换表情符号
+POST _analyze
+{
+  "tokenizer": "standard",
+  "char_filter": [
+      {
+        "type" : "mapping",
+        "mappings" : [ ":) => happy", ":( => sad"]
+      }
+    ],
+    "text": ["I am felling :)", "Feeling :( today"]
+}
+
+# white space and snowball
+GET _analyze
+{
+  "tokenizer": "whitespace",
+  "filter": ["stop","snowball"],
+  "text": ["The gilrs in China are playing this game!"]
+}
+
+
+# whitespace与stop
+GET _analyze
+{
+  "tokenizer": "whitespace",
+  "filter": ["stop","snowball"],
+  "text": ["The rain in Spain falls mainly on the plain."]
+}
+
+
+# remove 加入lowercase后，The被当成 stopword删除
+GET _analyze
+{
+  "tokenizer": "whitespace",
+  "filter": ["lowercase","stop","snowball"],
+  "text": ["The gilrs in China are playing this game!"]
+}
+
+# 正则表达式
+GET _analyze
+{
+  "tokenizer": "standard",
+  "char_filter": [
+      {
+        "type" : "pattern_replace",
+        "pattern" : "http://(.*)",
+        "replacement" : "$1"
+      }
+    ],
+    "text" : "http://www.elastic.co"
+}
+```
+
+## Tokenizer 分词器
+将原始文本按照一定的规则切分为词(term or token)
+
+### Elasticsearch内置的的Tokenizers
+- whitespace
+- standard
+- uax_url_email
+- pattern
+- keyword 不做任何处理
+- path hierarchy 文件路径
+
+也可以用JAVA开发插件，实现自己的Tokenizer
+
+## Token Filters 词单元过滤器
+将Tokenizer输出的单词(term)进行增删改
+
+### Elasticsearch内置的Token Filters
+- lowercase
+- stop
+- synonym 添加近义词
+
+# 设置一个Custom Analyzer
+```
+{
+    "settings": {
+        "analysis": {
+            "analyzer": {
+                "my_english": {
+                    "type": "english",
+                    "stem_exclusion":  [
+                        "organization",
+                        "organizations"],
+                    "stopwords": [
+                        "a",
+                        "an",
+                        "and",
+                        "as",
+                        "at",
+                        "be",
+                        "but"]
+                }
+            }
+        }
+    }
+}
+```
