@@ -1,7 +1,9 @@
 ---
 title: Configuring Logstash for Docker
 date: 2020-07-01 10:00:00
-tags: Logstash
+tags: 
+    - Logstash
+    - docker
 categories: Elastic Stack
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch入门简介
+title: ElasticSearch 入门简介
 date: 2019-06-20 10:41:00
 tags: ElasticSearch
 categories: Elastic Stack

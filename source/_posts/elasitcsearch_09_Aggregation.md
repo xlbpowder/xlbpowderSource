@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch聚合
+title: ElasticSearch 聚合
 date: 2020-07-15 14:00:00
 tags: ElasticSearch
 categories: Elastic Stack

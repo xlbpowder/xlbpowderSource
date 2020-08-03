@@ -1,7 +1,9 @@
 ---
 title: docker 安装MySql
 date: 2019-08-22 11:00:00
-tags: docker
+tags: 
+    - MySQL
+    - docker
 categories: DevOps
 ---
 

@@ -1,7 +1,9 @@
 ---
 title: docker ElasticSearch
 date: 2019-09-05 12:00:00
-tags: docker
+tags: 
+    - ElasticSearch
+    - docker
 categories: DevOps
 ---
 

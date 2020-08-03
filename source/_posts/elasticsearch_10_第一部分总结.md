@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch第一部分总结
+title: ElasticSearch 第一部分总结
 date: 2020-07-15 18:00:00
 tags: ElasticSearch
 categories: Elastic Stack

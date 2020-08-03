@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch分词
+title: ElasticSearch 分词
 date: 2020-06-23 12:00:00
 tags: ElasticSearch
 categories: Elastic Stack

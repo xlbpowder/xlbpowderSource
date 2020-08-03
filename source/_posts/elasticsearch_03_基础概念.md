@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch相关基础概念
+title: ElasticSearch 相关基础概念
 date: 2019-12-09 13:00:00
 tags: ElasticSearch
 categories: Elastic Stack
