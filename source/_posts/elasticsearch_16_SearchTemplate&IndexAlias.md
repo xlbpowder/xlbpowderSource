@@ -16,7 +16,7 @@ es的查询语句对相关性算分和查询性能的要求都很高，在开发
 
 使用`_scripts`来对Search Template进行操作，查询时就可以使用模版指定id和参数即可。这样即便是DSL修改了，也不影响查询方式。具体文档请查阅
 
-- (Search Template elastic官方文档)[https://www.elastic.co/guide/en/elasticsearch/reference/7.1/search-template.html]
+- [Search Template elastic官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.1/search-template.html)
 
 ## 示例
 ``` json
