@@ -189,3 +189,143 @@ POST /articles/_search
   }
 }
 ```
+
+# The Completion Suggester
+Completion Suggester提供了自动补全（Auto Complete）的功能。用户每输入一个字符，就需要即时发送一个查询请求到后端查找匹配项
+
+对性能要求比较苛刻。ES采用了不同的数据结构，并非通过倒排索引完成。
+而是将Analyze的数据编码成FST和索引一起存放。FST会被ES加载进内存，访问速度很快
+
+- 缺点：FST只能用于前缀查找
+
+## 使用Completion Suggester的步骤
+- 定义Mapping，type使用completion
+- 创建索引数据后，使用suggest查询来获取搜索建议
+
+
+## 示例
+创建mapping，创建示例数据。
+- suggest查询使用article-suggester
+- prefix 需要补全内容的前缀，即用户输入内容
+- completion field指定补全字段
+
+``` json
+PUT articles
+{
+  "mappings": {
+    "properties": {
+      "title_completion":{
+        "type": "completion"
+      }
+    }
+  }
+}
+
+POST articles/_bulk
+{ "index" : { } }
+{ "title_completion": "lucene is very cool"}
+{ "index" : { } }
+{ "title_completion": "Elasticsearch builds on top of lucene"}
+{ "index" : { } }
+{ "title_completion": "Elasticsearch rocks"}
+{ "index" : { } }
+{ "title_completion": "elastic is the company behind ELK stack"}
+{ "index" : { } }
+{ "title_completion": "Elk stack rocks"}
+{ "index" : {} }
+
+POST articles/_search?pretty
+{
+  "size": 0,
+  "suggest": {
+    "article-suggester": {
+      "prefix": "elk ",
+      "completion": {
+        "field": "title_completion"
+      }
+    }
+  }
+}
+```
+# Context Suggester
+Completion Suggester的扩展功能
+
+在很多情况下用户输入信息需要根据上下文进行提示，例如用户输入"star"
+- 咖啡相关 建议"Starbucks"
+- 电影相关 建议"StarWars"
+
+## 实现Context Suggester
+可以定义两种类型的Context
+- Category 任意字符串
+- Geo 地理位置信息
+
+## 实现Context Suggester的步骤
+- 定义Mapping
+- 创建索引数据，并且为每个文档加入Context信息
+- 结合Context进行Suggestion查询
+
+## 示例
+同样创建一个type为completion的字段，并且指定contexts，type为category，且为其命名
+
+查询时在completion下增加contexts，使用定义mapping时候contexts的命名comment_category来进行查询
+``` json
+PUT comments/_mapping
+{
+  "properties": {
+    "comment_autocomplete":{
+      "type": "completion",
+      "contexts":[{
+        "type":"category",
+        "name":"comment_category"
+      }]
+    }
+  }
+}
+
+POST comments/_doc
+{
+  "comment":"I love the star war movies",
+  "comment_autocomplete":{
+    "input":["star wars"],
+    "contexts":{
+      "comment_category":"movies"
+    }
+  }
+}
+
+POST comments/_doc
+{
+  "comment":"Where can I find a Starbucks",
+  "comment_autocomplete":{
+    "input":["starbucks"],
+    "contexts":{
+      "comment_category":"coffee"
+    }
+  }
+}
+
+POST comments/_search
+{
+  "suggest": {
+    "MY_SUGGESTION": {
+      "prefix": "sta",
+      "completion":{
+        "field":"comment_autocomplete",
+        "contexts":{
+          "comment_category":"coffee"
+        }
+      }
+    }
+  }
+}
+```
+# Suggester精准度和召回率比较
+
+## 精准度
+Completion > Phrase > Term
+
+## 召回率
+Term > Phrase > Completion
+
+## 性能
+Completion > Phrase > Term
