@@ -2,7 +2,7 @@
 title: web架构基础
 date: 2021-02-02 10:00:00
 tags: web协议
-categories: 架构
+categories: 网络
 ---
 
 了解REST架构是如何从WEB五种架构推演而来的，以及在推演过程中放弃了什么，选择了什么

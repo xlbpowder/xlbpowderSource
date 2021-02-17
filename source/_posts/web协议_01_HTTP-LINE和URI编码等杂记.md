@@ -2,7 +2,7 @@
 title: HTTP-line和URI编码等杂记
 date: 2021-02-04 10:00:00
 tags: web协议
-categories: 架构
+categories: 网络
 ---
 
 主要记录了http-line和URI编码信息，还记录了一些web协议相关杂乱的知识
@@ -167,3 +167,40 @@ DIGIT %30-%39
 - 307 Temporary Redirect 类似302，但明确重定向后请求方法必须与原方法请求相同，不得改变
 - 308 Permanent Redirect 类似301，但明确重定向后请求方法必须与原方法请求相同，不得改变
 
+### 4xx
+客户端错误
+- 400 Bad Request 服务器认为客户端出现了错误，但不能明确判断为以下哪种错误时使用此代码。例如HTTP请求格式错误
+- 401 Unauthorized 用户认证信息缺失或不正确，导致服务器无法处理请求
+- 407 Proxy Authentication Required 对需要经由代理的请求，认证信息未通过代理服务器的验证
+- 403 Forbidden 服务器理解请求的含义，但没有权限执行此请求
+- 404 Not Found 服务器没有找到对应的资源
+- 410 Gone 服务器没有找到对应的资源，且明确的知道该位置永久性的找不到该资源
+- 405 Method Not Allowed 服务器不支持请求行中的Method方法
+- 406 Not Acceptable 对客户端指定的资源表述不存在（例如对语言或者编码有要求），服务器返回表述列表供客户端选择
+- 408 Request Timeout 服务器接受请求超时
+- 409 Conflict 资源冲突，例如上传文件时目标位置已经存在版本更新的资源
+- 411 Length Required 如果请求含有包体且未携带Content-Length头部，且不属于chunk类请求时，返会411
+- 412 Precondition Failed 复用缓存时传递的If-Unmodified-Since或If-None-Match头部不被满足
+- 413 Payload Too large/Request Entity Too large 请求的包体超出服务器能处理的最大长度
+- 414 URI Too Long 请求的URI超出服务器能接受的最大长度
+- 415 Unsupported Media Type 上传的文件类型不被服务器支持
+- 416 Range Not Satisfiable 无法提供Range请求中指定的那段包体
+- 417 Expectation Failed 对于Expect请求头部期待的情况无法满足时的响应码
+- 421 Misdirected Request 服务器认为这个请求不该发给它，因为它没有能力处理
+- 426 Upgrade Required 服务器拒绝基于当前HTTP协议提供服务，通过Upgrade头部告知客户端必须升级协议才能继续处理
+- 428 Precondition Required 用户请求中缺失了条件类头部，例如If-Match
+- 429 Too Many Requests 客户端发送请求的速率过快
+- 431 Request Header Fields Too Large 请求的HEADER头部大小超过限制
+- 451 Unavailable For Legal Reasons RFC7725，由于法律原因资源不可访问
+
+### 5xx
+服务端错误
+- 500 Internal Server Error 服务器内部错误，且不属于以下错误类型
+- 501 Not Implemented 服务器不支持实现请求所需要的功能
+- 502 Bad Gateway 代理服务器无法获取到合法响应
+- 503 Service Unavailable 服务器资源尚未准备好处理当前请求
+- 504 Gateway Timeout 代理服务器无法及时的从上游获取响应
+- 505 HTTP Version Not Supported 请求使用的HTTp协议版本不支持
+- 507 Insufficient Storage 服务器没有足够的空间处理请求
+- 508 Loop Detected 访问资源时检测到循环
+- 511 Network Authentication Required 代理服务器发现客户端需要进行身份验证才能获得网络访问权限
